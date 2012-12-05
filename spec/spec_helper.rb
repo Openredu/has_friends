@@ -5,7 +5,7 @@ ActiveRecord::Base.configurations = {'test' => {:adapter => 'sqlite3', :database
 ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations["test"])
 
 load("schema.rb")
-require File.dirname(__FILE__) + "/../init"
+require File.dirname(__FILE__) + "/../has_friends.rb"
 
 class Object
   def self.unset_class(*args)

@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    has_friends (0.0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -94,8 +99,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (= 1.0.15)
+  bundler
+  has_friends!
   rails (= 3.0.7)
+  rspec
   rspec-rails
   ruby-debug
   shoulda-matchers
