@@ -9,7 +9,7 @@ module Friends
     def has_friends
       include Friends::InstanceMethods
 
-      has_many :friendships
+      has_many :friendships, :class_name => 'Friendship'
       has_many :friends, :through => :friendships, :source => :friend, :conditions => "friendships.status = 'accepted'"
       has_many :friends_pending, :through => :friendships, :source => :friend, :conditions => "friendships.status = 'pending'"
 
@@ -68,7 +68,7 @@ module Friends
     end
 
     def friends_in_common_with(user)
-      self.friends.where("users.id IN (?)", user.friends.collect(&:id))
+      self.friends & user.friends
     end
 
     def friends_not_in_common_with(user)
