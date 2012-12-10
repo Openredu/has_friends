@@ -7,13 +7,6 @@ class Friendship < ActiveRecord::Base
   STATUS_FRIENDSHIP_ACCEPTED = 5
   STATUS_REQUESTED           = 6
 
-  def self.online
-    # scopes
-    scope :pending, where(:status => 'pending')
-    scope :accepted, where(:status => 'accepted')
-    scope :requested, where(:status => 'requested')
-  end
-
   # associations
   belongs_to :user
   belongs_to :friend, :class_name => 'User', :foreign_key => 'friend_id'
@@ -24,6 +17,18 @@ class Friendship < ActiveRecord::Base
     unless user.friends_count == 0
       User.decrement_counter(:friends_count, f.user_id)
     end
+  end
+
+  def self.pending
+    where(:status => 'pending')
+  end
+
+  def self.accepted
+    where(:status => 'accepted')
+  end
+
+  def self.requested
+    where(:status => 'requested')
   end
 
   def pending?
