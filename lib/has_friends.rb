@@ -1,3 +1,5 @@
+require 'friendship'
+
 module Friends
   def self.included(base)
     base.extend Friends::ClassMethods
@@ -37,10 +39,10 @@ module Friends
 
       # friendship is pending so accept it
       if friendship && friendship.pending?
-          friendship.accept!
-          request.accept!
+        friendship.accept!
+        request.accept!
 
-          return friendship, Friendship::STATUS_FRIENDSHIP_ACCEPTED
+        return friendship, Friendship::STATUS_FRIENDSHIP_ACCEPTED
       end
 
       # we didn't find a friendship, so let's create one!
@@ -92,6 +94,7 @@ module Friends
     end
 
     private
+
     # Destroyes all friendships of user
     def destroy_all_friendships
       Friendship.destroy_all({:user_id => id})
@@ -99,3 +102,5 @@ module Friends
     end
   end
 end
+
+ActiveRecord::Base.send(:include, Friends)
