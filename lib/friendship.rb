@@ -12,11 +12,11 @@ class Friendship < ActiveRecord::Base
     scope :pending, where(:status => 'pending')
     scope :accepted, where(:status => 'accepted')
     scope :requested, where(:status => 'requested')
-
-    # associations
-    belongs_to :user
-    belongs_to :friend, :class_name => 'User', :foreign_key => 'friend_id'
   end
+
+  # associations
+  belongs_to :user
+  belongs_to :friend, :class_name => 'User', :foreign_key => 'friend_id'
 
   # callback
   after_destroy do |f|

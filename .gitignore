@@ -2,7 +2,7 @@
 .bundle
 Gemfile.lock
 pkg/*
-
+.rspec
 *.sw*
 bin/*
 *~
