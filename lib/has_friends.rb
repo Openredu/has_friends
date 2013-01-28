@@ -55,12 +55,11 @@ module Friends
     end
 
     def friends?(friend)
-      friendship = friendship_for(friend)
-      friendship && friendship.accepted?
+      friends.include?(friend)
     end
 
     def friendship_for(friend)
-      friendships.first :conditions => {:friend_id => friend.id}
+      friendships.where(:friend_id => friend.id).first
     end
 
     def is?(friend)

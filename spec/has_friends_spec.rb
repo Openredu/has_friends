@@ -115,6 +115,10 @@ describe "has_friends" do
       @vader.friends_of_friends.to_set.should == [@yoda, @han_solo].to_set
     end
 
+    it "vader and yoda should not be friends" do
+      @vader.friends?(@yoda).should be_false
+    end
+
     it "should destroy friendship" do
       expect {
         @vader.destroy_friendship_with(@luke)
@@ -226,8 +230,9 @@ describe "has_friends" do
   end
 
   private
-    def create_friendship(user1, user2)
-      user1.be_friends_with(user2)
-      user2.be_friends_with(user1)
-    end
+
+  def create_friendship(user1, user2)
+    user1.be_friends_with(user2)
+    user2.be_friends_with(user1)
+  end
 end
