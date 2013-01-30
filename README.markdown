@@ -1,15 +1,12 @@
 has_friends
 ===========
 
-**ATTENTION:** This is a new simpler implementation. If you want to use the previous version,
-get the 1.0 tag.
-
 Instalation
 -----------
 
-Install the plugin with
-
-	script/plugin install git://github.com/fnando/has_friends.git
+Install in the Gemfile
+	
+	gem has_friends, :git => git@github.com:jessicabarbalho/has_friends.git
 
 Then generate a migration with `script/generate migration create_friendships` and add the following code:
 
