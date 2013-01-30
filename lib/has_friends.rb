@@ -55,11 +55,20 @@ module Friends
     end
 
     def friends?(friend)
-      friends.include?(friend)
+      if friends.loaded?
+        friends.include?(friend)
+      else
+        friendship = friendship_for(friend)
+        friendship && friendship.accepted?
+      end
     end
 
     def friendship_for(friend)
-      friendships.where(:friend_id => friend.id).first
+      if friendships.loaded?
+        friendships.select{ |friendship| friendship.friend_id == friend.id }.first
+      else
+        friendships.where(:friend_id => friend.id).first
+      end
     end
 
     def is?(friend)
