@@ -97,8 +97,8 @@ module Friends
     def destroy_friendship_with(friend)
       friendship = friendship_for(friend)
       other_friendship = friend.friendship_for(self)
-      friendship.destroy
-      other_friendship.destroy
+      friendship.try(:destroy)
+      other_friendship.try(:destroy)
     end
 
     private

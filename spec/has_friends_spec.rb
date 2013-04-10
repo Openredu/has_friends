@@ -46,7 +46,6 @@ describe "has_friends" do
 
     it "should respond to destroy_friendship_with" do
       @vader.should respond_to(:destroy_friendship_with)
-
     end
   end
 
