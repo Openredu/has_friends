@@ -126,6 +126,18 @@ describe "has_friends" do
   end
 
   describe "friendship request" do
+    it "requested_at should not be nil" do
+      friendship, status = @vader.be_friends_with(@luke)
+
+      friendship.requested_at.should_not be_nil
+    end
+
+    it "accepted_at should be nil" do
+      friendship, status = @vader.be_friends_with(@luke)
+
+      friendship.accepted_at.should be_nil
+    end
+
     it "should return nil and 'friend is required' status" do
       friendship, status = @vader.be_friends_with(nil)
 
@@ -165,6 +177,13 @@ describe "has_friends" do
       status.should == Friendship::STATUS_FRIENDSHIP_ACCEPTED
       @vader.should be_friends(@luke)
       @luke.should be_friends(@vader)
+    end
+
+    it "should update accepted_at when accept friendship request" do
+      @vader.be_friends_with(@luke)
+      friendship, status = @luke.be_friends_with(@vader)
+
+      friendship.accepted_at.should_not be_nil
     end
 
     it "should create friendships" do

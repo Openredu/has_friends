@@ -5,7 +5,7 @@ Instalation
 -----------
 
 Install in the Gemfile
-	
+
 	gem has_friends, :git => git@github.com:jessicabarbalho/has_friends.git
 
 Then generate a migration with `script/generate migration create_friendships` and add the following code:
@@ -14,8 +14,9 @@ Then generate a migration with `script/generate migration create_friendships` an
 	  def self.up
 	    create_table :friendships do |t|
 	      t.references :user, :friend
-	      t.datetime :requested_at, :accepted_at, :null => true, :default => nil
 	      t.string :status
+          t.datetime :requested_at, :null => false
+          t.datetime :accepted_at, :null => true, :default => nil
 	    end
 
 	    add_index :friendships, :user_id

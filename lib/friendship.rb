@@ -19,6 +19,10 @@ class Friendship < ActiveRecord::Base
     end
   end
 
+  before_create do |f|
+    f.requested_at = Time.now
+  end
+
   def self.pending
     where(:status => 'pending')
   end
@@ -46,5 +50,6 @@ class Friendship < ActiveRecord::Base
   def accept!
     User.increment_counter(:friends_count, user_id) unless accepted?
     update_attribute(:status, 'accepted')
+    update_attribute(:accepted_at, Time.now)
   end
 end

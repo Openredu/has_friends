@@ -13,7 +13,8 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table :friendships do |t|
     t.references :user, :friend
     t.string :status
-    t.timestamps
+    t.datetime :requested_at, :null => false
+    t.datetime :accepted_at, :null => true, :default => nil
   end
 
   create_table :things do |t|

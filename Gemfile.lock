@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    has_friends (0.0.2)
+    has_friends (0.0.3)
 
 GEM
   remote: http://rubygems.org/
