@@ -14,8 +14,9 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "has_friends"
   s.add_development_dependency 'rspec'
-  s.add_development_dependency "bundler"
-  s.add_development_dependency "activerecord", "~> 3.2"
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'bundler'
+  s.add_development_dependency 'activerecord', '~> 3.2'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'debugger'
