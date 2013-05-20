@@ -9,7 +9,7 @@ This gem requires at least Ruby 1.9.3 and Rails 3.2+.
 
 Install in the Gemfile
 
-	gem has_friends, :git => git@github.com:jessicabarbalho/has_friends.git
+	gem redu-has_friends, '~> 1.0'
 
 Then generate a migration with `script/generate migration create_friendships` and add the following code:
 
