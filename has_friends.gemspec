@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "version"
 
 Gem::Specification.new do |s|
-  s.name        = "has_friends"
+  s.name        = "redu-has_friends"
   s.platform    = Gem::Platform::RUBY
   s.version     = Friends::VERSION
   s.authors     = ["jessicabarbalho, guiocavalcanti"]
