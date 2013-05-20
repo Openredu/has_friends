@@ -121,7 +121,7 @@ describe "has_friends" do
     it "should destroy friendship" do
       expect {
         @vader.destroy_friendship_with(@luke)
-      }.should change(Friendship, :count).by(-2)
+      }.to change(Friendship, :count).by(-2)
     end
   end
 
@@ -228,7 +228,7 @@ describe "has_friends" do
         @thing = Thing.create(:friendship => @friendships.first)
         expect {
           @vader.destroy
-        }.should change(Thing, :count).by(-1)
+        }.to change(Thing, :count).by(-1)
       end
     end
   end

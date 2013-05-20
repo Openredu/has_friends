@@ -1,3 +1,4 @@
+require "bundler/setup"
 require "active_record"
 require "rspec"
 
@@ -5,7 +6,7 @@ ActiveRecord::Base.configurations = {'test' => {:adapter => 'sqlite3', :database
 ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations["test"])
 
 load("schema.rb")
-require 'lib/has_friends'
+require 'has_friends'
 
 class Object
   def self.unset_class(*args)
