@@ -9,9 +9,14 @@ module Friends
     def has_friends
       include Friends::InstanceMethods
 
-      has_many :friendships, :class_name => 'Friendship'
-      has_many :friends, :through => :friendships, :source => :friend, :conditions => "friendships.status = 'accepted'"
-      has_many :friends_pending, :through => :friendships, :source => :friend, :conditions => "friendships.status = 'pending'"
+      has_many :friendships,
+               class_name: 'Friendship'
+      has_many :friends, -> { where(["friendships.status = 'accepted'"]) },
+               through: :friendships,
+               source: :friend
+      has_many :friends_pending, -> { where(["friendships.status = 'pending'"]) },
+               through: :friendships,
+               source: :friend
 
       before_destroy :destroy_all_friendships
     end
@@ -46,10 +51,10 @@ module Friends
       end
 
       # we didn't find a friendship, so let's create one!
-      friendship = self.friendships.create(:friend_id => friend.id, :status => 'requested')
+      friendship = self.friendships.create(friend_id: friend.id, status: 'requested')
 
       # we didn't find a friendship request, so let's create it!
-      request = friend.friendships.create(:friend_id => id, :status => 'pending')
+      request = friend.friendships.create(friend_id: id, status: 'pending')
 
       return friendship, Friendship::STATUS_REQUESTED
     end
@@ -67,7 +72,7 @@ module Friends
       if friendships.loaded?
         friendships.select{ |friendship| friendship.friend_id == friend.id }.first
       else
-        friendships.where(:friend_id => friend.id).first
+        friendships.where(friend_id: friend.id).first
       end
     end
 
@@ -105,8 +110,8 @@ module Friends
 
     # Destroyes all friendships of user
     def destroy_all_friendships
-      Friendship.destroy_all({:user_id => id})
-      Friendship.destroy_all({:friend_id => id})
+      Friendship.destroy_all({user_id: id})
+      Friendship.destroy_all({friend_id: id})
     end
   end
 end
